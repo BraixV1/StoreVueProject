@@ -27,7 +27,7 @@ const doUpdate = async () => {
 }
 
 const Fetch = async () => {
-    warehouseId.value = route.params.id;
+    warehouseId.value = route.params.id.toString();
     try {
         const res = await WarehouseService.getSpecific(warehouseId.value);
         if (res.data) {

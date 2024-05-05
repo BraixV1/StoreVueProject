@@ -28,7 +28,7 @@ const doUpdate = async () => {
 }
 
 const Fetch = async () => {
-    keyboardBuildId.value = route.params.id;
+    keyboardBuildId.value = route.params.id.toString();
     try {
         const res = await KeyboardBuildService.getSpecific(keyboardBuildId.value);
         if (res.data) {

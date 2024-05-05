@@ -11,7 +11,7 @@ let errors = ref<string[]>([]);
 
 const DoDelete = async () => {
 
-    CategoryId.value = route.params.id;
+    CategoryId.value = route.params.id.toString();
 
     const res = await KeyboardBuildService.Delete(CategoryId.value)
 

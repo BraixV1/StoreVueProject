@@ -26,7 +26,7 @@ const doUpdate = async () => {
 }
 
 const Fetch = async () => {
-    PartId.value = route.params.id;
+    PartId.value = route.params.id.toString();
     try {
         const res = await PartService.getSpecific(PartId.value);
         if (res.data) {

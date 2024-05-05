@@ -12,7 +12,7 @@ let errors = ref<string[]>([]);
 
 const DoDelete = async () => {
 
-    partInBuildId.value = route.params.id;
+    partInBuildId.value = route.params.id.toString();
 
     const res = await PartInBuildService.Delete(partInBuildId.value)
 

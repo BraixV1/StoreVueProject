@@ -22,7 +22,7 @@ let showPart = ref(true)
 let errors = ref<string[]>([])
 
 const fetch = async () => {
-    orderItemId.value = route.params.id
+    orderItemId.value = route.params.id.toString()
     const resPart = await PartService.getAll()
     const resKeyboard = await KeyboardService.getAll()
     const OrderItemResponse = await OrderItemService.getSpecific(orderItemId.value)

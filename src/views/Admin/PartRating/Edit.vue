@@ -30,7 +30,7 @@ const doUpdate = async () => {
 }
 
 const Fetch = async () => {
-    KeyboardRatingId.value = route.params.id
+    KeyboardRatingId.value = route.params.id.toString()
     try {
         const res = await PartRatingService.getSpecific(KeyboardRatingId.value)
         if (res.data) {

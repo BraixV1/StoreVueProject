@@ -21,7 +21,7 @@ let Parts = ref<IPartInfo[]>([]);
 let errors = ref<string[]>([]);
 
 const fetch = async () => {
-    keyboardPartId.value = route.params.id;
+    keyboardPartId.value = route.params.id.toString();
     const resPart = await PartService.getAll();
     const resKeyboard = await KeyboardService.getAll();
     const keyboardPartResponse = await KeyboardPartService.getSpecific(keyboardPartId.value)

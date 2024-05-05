@@ -12,7 +12,7 @@ let errors = ref<string[]>([]);
 
 const DoDelete = async () => {
 
-    warehouseId.value = route.params.id;
+    warehouseId.value = route.params.id.toString();
 
     const res = await WarehouseService.Delete(warehouseId.value)
 

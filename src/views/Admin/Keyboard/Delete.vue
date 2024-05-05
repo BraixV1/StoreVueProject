@@ -11,7 +11,7 @@ let errors = ref<string[]>([]);
 
 const DoDelete = async () => {
 
-    keyboardId.value = route.params.id;
+    keyboardId.value = route.params.id.toString();
 
     const res = await KeyboardService.DeleteKeyboard(keyboardId.value)
 

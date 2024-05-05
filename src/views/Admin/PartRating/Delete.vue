@@ -11,7 +11,7 @@ let errors = ref<string[]>([]);
 
 const DoDelete = async () => {
 
-    partRatingId.value = route.params.id;
+    partRatingId.value = route.params.id.toString();
 
     const res = await PartRatingService.Delete(partRatingId.value)
 

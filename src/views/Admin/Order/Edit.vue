@@ -40,7 +40,7 @@ const doUpdate = async () => {
 }
 
 const Fetch = async () => {
-    OrderId.value = route.params.id;
+    OrderId.value = route.params.id.toString();
     try {
         const res = await OrderService.getSpecific(OrderId.value);
         if (res.data) {

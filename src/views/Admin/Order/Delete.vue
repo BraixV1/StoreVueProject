@@ -11,7 +11,7 @@ let errors = ref<string[]>([]);
 
 const DoDelete = async () => {
 
-    OrderId.value = route.params.id;
+    OrderId.value = route.params.id.toString();
 
     const res = await OrderService.Delete(OrderId.value)
 

@@ -20,7 +20,7 @@ let Parts = ref<IPartInfo[]>([]);
 let errors = ref<string[]>([]);
 
 const fetch = async () => {
-    partInBuildId.value = route.params.id;
+    partInBuildId.value = route.params.id.toString();
     const resPart = await PartService.getAll();
     const resKeyboardBuild = await KeyboardBuildService.getAll();
     const PartInBuildResponse = await PartInBuildService.getSpecific(partInBuildId.value)
