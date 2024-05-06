@@ -1,22 +1,46 @@
 <script setup lang="ts">
 import { useShoppingCartStore } from '../../stores/shoppingCart';
-import router from '@/router';
 import OrderService from '@/services/OrderService';
+import { useAuthStore } from '@/stores/auth';
 import { ref } from 'vue';
+import PurchaseCompleted from '@/components/Shopping/PurchaseCompleted.vue';
+
+const userData = useAuthStore()
 
 let cart = useShoppingCartStore();
 
 let errors = ref<string[]>([]);
 let price = ref(0);
+let firstName = ref("");
+let lastName = ref('');
+let email = ref('');
+let phoneNumber = ref(0);
+let addressLine = ref('');
+let city = ref('');
+let state = ref('');
+let zipCode = ref(0);
+let orderCompleted = ref(false)
+let completedOrderId = ref("")
 
 
 const CompletePurchase = async () => {
-    const res = await OrderService.Add(10, cart.CartItems);
+    const res = await OrderService.Add(10, firstName.value,lastName.value,email.value,phoneNumber.value, addressLine.value,city.value, state.value, zipCode.value, cart.CartItems);
     if (res.data){
+        console.log(JSON.stringify(res.data))
+        completedOrderId.value = res.data.id;
+        orderCompleted.value = true;
         cart.clearCartData();
-        router.push('/');
     }
     errors.value = res.errors!;
+}
+
+const FillFields = () => {
+    if (userData.isAuthenticated) {
+        firstName.value = userData.firstName!;
+        lastName.value = userData.lastName!;
+        email.value = userData.email!;
+    }
+
 }
 
 const CalculatePrice = () => {
@@ -31,11 +55,13 @@ const CalculatePrice = () => {
 }
 
 CalculatePrice()
+FillFields()
 
 </script>
 
 <template>
-    <div class="font-[sans-serif] bg-gray-50">
+    <PurchaseCompleted v-if="orderCompleted"  :id="completedOrderId" />
+    <div v-else class="font-[sans-serif] bg-gray-50">
         <div class="grid lg:grid-cols-2 xl:grid-cols-3 gap-4 h-full">
             <div class="bg-indigo-500 lg:h-screen lg:sticky lg:top-0">
                 <div class="relative h-full">
@@ -83,6 +109,7 @@ CalculatePrice()
                         <div class="grid sm:grid-cols-2 gap-6">
                             <div class="relative flex items-center">
                                 <input
+                                    v-model="firstName"
                                     type="text"
                                     placeholder="First Name"
                                     class="px-4 py-3.5 bg-white text-[#333] w-full text-sm border-b-2 focus:border-[#333] outline-none"
@@ -103,6 +130,7 @@ CalculatePrice()
                             </div>
                             <div class="relative flex items-center">
                                 <input
+                                    v-model="lastName"
                                     type="text"
                                     placeholder="Last Name"
                                     class="px-4 py-3.5 bg-white text-[#333] w-full text-sm border-b-2 focus:border-[#333] outline-none"
@@ -123,6 +151,7 @@ CalculatePrice()
                             </div>
                             <div class="relative flex items-center">
                                 <input
+                                    v-model="email"
                                     type="email"
                                     placeholder="Email"
                                     class="px-4 py-3.5 bg-white text-[#333] w-full text-sm border-b-2 focus:border-[#333] outline-none"
@@ -162,6 +191,7 @@ CalculatePrice()
                             </div>
                             <div class="relative flex items-center">
                                 <input
+                                    v-model="phoneNumber"
                                     type="number"
                                     placeholder="Phone No."
                                     class="px-4 py-3.5 bg-white text-[#333] w-full text-sm border-b-2 focus:border-[#333] outline-none"
@@ -183,21 +213,25 @@ CalculatePrice()
                         <h3 class="text-lg font-bold text-[#333] mb-6">Shipping Address</h3>
                         <div class="grid sm:grid-cols-2 gap-6">
                             <input
+                                v-model="addressLine"
                                 type="text"
                                 placeholder="Address Line"
                                 class="px-4 py-3.5 bg-white text-[#333] w-full text-sm border-b-2 focus:border-[#333] outline-none"
                             />
                             <input
+                                v-model="city"
                                 type="text"
                                 placeholder="City"
                                 class="px-4 py-3.5 bg-white text-[#333] w-full text-sm border-b-2 focus:border-[#333] outline-none"
                             />
                             <input
+                                v-model="state"
                                 type="text"
                                 placeholder="State"
                                 class="px-4 py-3.5 bg-white text-[#333] w-full text-sm border-b-2 focus:border-[#333] outline-none"
                             />
                             <input
+                                v-model="zipCode"
                                 type="text"
                                 placeholder="Zip Code"
                                 class="px-4 py-3.5 bg-white text-[#333] w-full text-sm border-b-2 focus:border-[#333] outline-none"

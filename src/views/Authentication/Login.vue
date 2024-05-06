@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import AccountService from '@/services/AccountService';
-import { useAuthStore } from '@/stores/auth';
-import { nextTick, ref } from 'vue';
+import { ref } from 'vue';
 import router from '../../router/index';
 
 
-const authStore = useAuthStore();
 
 let loginEmail = ref('');
 let loginPassword = ref('');

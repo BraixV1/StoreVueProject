@@ -8,8 +8,17 @@ export interface IOrderInfo {
   orderNumber: number
   orderItemsCollection?: IOrderItemInfo[]
 
-  appUserId: string
-  appUser: IUserInfo
+  appUserId: string | null
+  appUser: IUserInfo | null
 
   orderStatus: EOrderStatus
+
+  firstName: string
+  lastName: string
+  email: string
+  phoneNumber: string
+  addressLine: string
+  city: string
+  state: string
+  zipCode: string
 }

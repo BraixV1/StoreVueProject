@@ -154,7 +154,7 @@ const filteredOrders = computed(() => {
             <tbody class="divide-y divide-gray-200">
                 <tr v-for="order in filteredOrders" :key="order.id">
                     <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-700">
-                        {{ order.appUser.email }}
+                        {{ order.email }}
                     </td>
                     <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ order.orderDate }}</td>
                     <td class="whitespace-nowrap px-4 py-2 text-gray-700">

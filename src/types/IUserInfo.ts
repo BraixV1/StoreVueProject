@@ -1,4 +1,5 @@
 export interface IUserInfo {
+  userId: string
   jwt: string
   email: string
   refreshToken: string

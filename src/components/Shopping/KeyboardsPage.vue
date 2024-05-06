@@ -13,7 +13,7 @@ const props = defineProps<{
         class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5"
     >
         <div v-for="keyboard in props.keyboards" :key="keyboard.id"
-            class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl"
+            class=" w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl"
         >
             <router-link :to="`KeyboardDetails/${keyboard.id}`">
                 <img

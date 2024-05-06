@@ -2,7 +2,7 @@ import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 
 export const httpCLient = axios.create({
-    baseURL: "https://brkukkwebapp24.azurewebsites.net/api",
+    baseURL: "brkukkwebapp24.azurewebsites.net/api",
     headers: {
         "Content-type": "application/json"
     }

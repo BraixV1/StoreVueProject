@@ -6,7 +6,7 @@ import { useBuildStore } from '@/stores/keyboardBuild';
 const authStore = useAuthStore()
 const BuildId = useBuildStore()
 
-if (authStore.email == null) {
+if (!authStore.isAuthenticated) {
     router.push('/login')
 }
 

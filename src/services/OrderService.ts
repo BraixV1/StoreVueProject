@@ -1,6 +1,5 @@
 import httpCLient, { getDecodedAccessToken } from '@/http-client'
 import { useAuthStore } from '@/stores/auth'
-import { EOrderStatus } from '@/types/Helpers/EOrderStatus'
 import type { IResultObject } from '@/types/IResultObject'
 import type { IOrderInfo } from '@/types/Order'
 import type { IOrderItemInfo } from '@/types/OrderItem'
@@ -10,20 +9,6 @@ export default class OrderService {
     constructor() {}
 
     private static httpClient = httpCLient
-
-    static convertOrderStatus(numericValue: number): EOrderStatus {
-        switch (numericValue) {
-            case 0:
-                return EOrderStatus.Pending
-            case 1:
-                return EOrderStatus.Done
-            case 2:
-                return EOrderStatus.Canceled
-            default:
-                console.warn(`Unknown order status value: ${numericValue}`)
-                return EOrderStatus.Pending
-        }
-    }
 
     static async getAll(): Promise<IResultObject<IOrderInfo[]>> {
         const authstore = useAuthStore()
@@ -68,21 +53,8 @@ export default class OrderService {
     }
 
     static async getSpecific(id: string): Promise<IResultObject<IOrderInfo>> {
-        const authstore = useAuthStore()
-        if (authstore.jwt == null) {
-            return { errors: ['Unauthorised request'] }
-        }
-        const decodedToken = getDecodedAccessToken(authstore.jwt!)
-        const currentTime = new Date()
-        const expDate = new Date(decodedToken.exp!)
-        if (expDate.getTime() < currentTime.getTime()) {
-            await AccountService.RefreshJWt()
-        }
-
         try {
-            const response = await OrderService.httpClient.get<IOrderInfo>(`v1/Order/GetOrder/${id}`, {
-                headers: { Authorization: `Bearer ${authstore.jwt}` }
-            })
+            const response = await OrderService.httpClient.get<IOrderInfo>(`v1/Order/GetOrder/${id}`)
             if (response.status < 300) {
                 const orderData = response.data
                 // orderData.orderStatus = this.convertOrderStatus(orderData.orderStatus)
@@ -152,31 +124,33 @@ export default class OrderService {
 
     static async Add(
         OrderNumber: number,
+        firstName: string,
+        lastName: string,
+        email: string,
+        phoneNumber: number,
+        addressLine: string,
+        city: string,
+        state: string,
+        zipCode: number,
         OrderItemsCollection?: IOrderItemInfo[]
     ): Promise<IResultObject<IOrderInfo>> {
+        const authstore = useAuthStore()
         const UpdateData = {
             OrderNumber: OrderNumber,
-            OrderItemsCollection: OrderItemsCollection
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            phoneNumber: phoneNumber,
+            addressLine: addressLine,
+            state: state,
+            city: city,
+            zipCode: zipCode,
+            OrderItemsCollection: OrderItemsCollection,
+            appUserId: authstore.id
         }
-        const authstore = useAuthStore()
-        if (authstore.jwt == null) {
-            return { errors: ['Unauthorised request'] }
-        }
-        const decodedToken = getDecodedAccessToken(authstore.jwt!)
-        const currentTime = new Date()
-        const expDate = new Date(decodedToken.exp!)
-        if (expDate.getTime() < currentTime.getTime()) {
-            await AccountService.RefreshJWt()
-        }
+        
         try {
-            console.log(JSON.stringify(UpdateData))
-            const response = await OrderService.httpClient.post<IOrderInfo>(
-                'v1/Order/AddOrder',
-                UpdateData,
-                {
-                    headers: { Authorization: `Bearer ${authstore.jwt}` }
-                }
-            )
+            const response = await OrderService.httpClient.post<IOrderInfo>('v1/Order/AddOrder', UpdateData)
             if (response.status < 300) {
                 return {
                     data: response.data

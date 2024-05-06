@@ -4,6 +4,7 @@ import AccountService from '../services/AccountService'
 import shoppingcart from './svg/shoppingcart.vue'
 import shoppingCartPopUp from '@/components/Shopping/ShoppingCartPopUp.vue'
 import { useShoppingCartStore } from '@/stores/shoppingCart'
+import { ref } from 'vue'
 
 const authStore = useAuthStore()
 const cartStore = useShoppingCartStore()
@@ -13,8 +14,11 @@ const doLogout = async () => {
     location.reload()
 }
 
+let showDropDown = ref(false)
 
-
+const enableDropDown = () => {
+    showDropDown.value = !showDropDown.value
+}
 </script>
 
 <template>
@@ -63,11 +67,7 @@ const doLogout = async () => {
                             </router-link>
                         </li>
 
-                        <li>
-                            <a class="text-gray-500 transition hover:text-gray-500/75" href="#">
-                                Projects
-                            </a>
-                        </li>
+
                         <li v-if="authStore.roles?.includes('Admin')">
                             <router-link
                                 to="/Admin/Keyboard/Index"
@@ -113,30 +113,81 @@ const doLogout = async () => {
                         </a>
                     </div>
 
-                    <button
-                        class="block rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 md:hidden"
-                    >
-                        <span class="sr-only">Toggle menu</span>
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="h-5 w-5"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            stroke-width="2"
+                    <div class="relative">
+                        <button
+                            @click.prevent="enableDropDown()"
+                            id="dropdownHoverButton"
+                            data-dropdown-toggle="dropdownHover"
+                            data-dropdown-trigger="hover"
+                            class="block rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 md:hidden"
                         >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="M4 6h16M4 12h16M4 18h16"
-                            />
-                        </svg>
-                    </button>
+                            <span class="sr-only">Toggle menu</span>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="h-5 w-5"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                stroke-width="2"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M4 6h16M4 12h16M4 18h16"
+                                />
+                            </svg>
+                        </button>
+
+                        <!-- Dropdown menu -->
+                        <div
+                            v-if="showDropDown"
+                            id="dropdown"
+                            class="animate-fade-down animate-duration-300 animate-ease-in absolute top-full z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+                        >
+                            <ul
+                                class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                                aria-labelledby="dropdownDefaultButton"
+                            >
+                                <li>
+                                    <router-link
+                                        to="/KeyboardBuilder/BuilderPage"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                        >Keyboard builder</router-link
+                                    >
+                                </li>
+                                <li>
+                                    <router-link
+                                        to="/Store/KeyboardsStore"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                        >ready to use keyboards</router-link
+                                    >
+                                </li>
+                                <li>
+                                    <router-link
+                                        to="/Store/PartsStore"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                        >parts</router-link
+                                    >
+                                </li>
+                                <li v-if="authStore.isAuthenticated">
+                                    <button
+                                        @click.prevent="doLogout()"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                        >Sign out</button
+                                    >
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
                     <div class="relative">
                         <button @click.prevent="cartStore.Opened = !cartStore.Opened">
                             <shoppingcart />
                         </button>
-                        <div v-if="cartStore.Opened" class="absolute top-full z-10 -right-1/2 mt-2">
+                        <div
+                            v-if="cartStore.Opened"
+                            class="animate-fade-down animate-duration-500 animate-ease-in absolute top-full z-10 -right-1/2 mt-2"
+                        >
                             <shopping-cart-pop-up />
                         </div>
                     </div>

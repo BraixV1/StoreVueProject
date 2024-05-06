@@ -5,7 +5,7 @@
 
 <template>    
     <section
-      class="h-screen max-h-screen/3 overflow-auto relative bg-[url(https://images.pexels.com/photos/841228/pexels-photo-841228.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)] bg-cover bg-center bg-no-repeat"
+      class="animate-fade-right animate-once animate-duration-800 animate-delay-200 animate-ease-in h-screen max-h-screen/3 overflow-auto relative bg-[url(https://images.pexels.com/photos/841228/pexels-photo-841228.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)] bg-cover bg-center bg-no-repeat"
     >
       <div
         class="absolute inset-0 bg-white/75 sm:bg-transparent sm:from-white/95 sm:to-white/25 ltr:sm:bg-gradient-to-r"

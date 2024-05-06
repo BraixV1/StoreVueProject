@@ -25,6 +25,7 @@ export default class AccountService {
         userData.jwt = response.data.jwt;
         userData.refreshToken = response.data.refreshToken;
         userData.roles = response.data.roles;
+        userData.id = response.data.userId;
         return {
           data: response.data
         }

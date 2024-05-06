@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: [
     "./public/**/*.html",
     "./src/**/*.{vue,js,ts,jsx,tsx}",
@@ -50,7 +50,8 @@ export default {
   },
   plugins: [
     require('@tailwindcss/forms'),
-    require('flowbite/plugin')
+    require('flowbite/plugin'),
+    require('tailwindcss-animated')
   ],
 }
 
