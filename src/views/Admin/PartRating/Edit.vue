@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import router from '@/router'
-import { useAuthStore } from '@/stores/auth'
 import { useRoute } from 'vue-router'
 import { ref } from 'vue'
 import PartRatingService from '@/services/PartRatingService'
@@ -30,7 +29,7 @@ const doUpdate = async () => {
 }
 
 const Fetch = async () => {
-    KeyboardRatingId.value = route.params.id.toString()
+    KeyboardRatingId.value = route.params.id.toString();
     try {
         const res = await PartRatingService.getSpecific(KeyboardRatingId.value)
         if (res.data) {

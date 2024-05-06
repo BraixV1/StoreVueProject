@@ -42,10 +42,10 @@ export default class OrderService {
             })
 
             if (response.status < 300) {
-                const orderData = response.data
-                orderData.forEach((order) => {
-                    order.orderStatus = this.convertOrderStatus(order.orderStatus)
-                })
+                // const orderData = response.data
+                // orderData.forEach((order) => {
+                //     order.orderStatus = this.convertOrderStatus(order.orderStatus)
+                // })
                 return {
                     data: response.data
                 }
@@ -85,7 +85,7 @@ export default class OrderService {
             })
             if (response.status < 300) {
                 const orderData = response.data
-                orderData.orderStatus = this.convertOrderStatus(orderData.orderStatus)
+                // orderData.orderStatus = this.convertOrderStatus(orderData.orderStatus)
                 return {
                     data: orderData
                 }
@@ -125,10 +125,10 @@ export default class OrderService {
             })
 
             if (response.status < 300) {
-                const orderData = response.data
-                orderData.forEach((order) => {
-                    order.orderStatus = this.convertOrderStatus(order.orderStatus)
-                })
+                // const orderData = response.data
+                // orderData.forEach((order) => {
+                //     order.orderStatus = this.convertOrderStatus(order.orderStatus)
+                // })
                 return {
                     data: response.data
                 }

@@ -19,7 +19,7 @@ let route = useRoute()
 let Ratings = ref<IPartRatingInfo[]>([]);
 
 const Fetch = async () => {
-    PartId.value = route.params.id;
+    PartId.value = route.params.id.toString();
     try {
         const res = await PartService.getSpecific(PartId.value);
         if (res.data) {
@@ -51,7 +51,10 @@ const AddToCart = () => {
             partName: Name.value,
             quantity: quantity.value,
             partCode: PartCode.value,
-            price: price.value
+            price: price.value,
+            partCommentsCollection: [],
+            partCategoriesCollection: [],
+            warehousePartsCollection: []
         },
         keyboardId: null,
         orderId: undefined,

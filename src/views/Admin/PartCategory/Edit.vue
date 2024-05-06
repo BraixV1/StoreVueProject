@@ -24,7 +24,7 @@ let CategoryId = ref('');
 let errors = ref<string[]>([])
 
 const fetch = async () => {
-    partCategoryId.value = route.params.id.toString()
+    partCategoryId.value = route.params.id.toString();
     const resPart = await PartService.getAll()
     const resKeyboard = await KeyboardService.getAll()
     const resCategory = await CategoryService.getAll()

@@ -1,5 +1,5 @@
 export enum EOrderStatus {
-    Pending = "Pending",
-    Done = "Done",
-    Canceled = "Canceled"
+    Pending = 0,
+    Done = 1,
+    Canceled = 2
 }

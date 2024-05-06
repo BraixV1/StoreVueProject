@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { useAuthStore } from '@/stores/auth';
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 import router from '@/router';
 import KeyboardRatingService from '@/services/KeyboardRatingService';
 
-let authStore = useAuthStore();
 let route = useRoute(); 
 
 let keyboardPartId = ref('');
@@ -13,9 +11,9 @@ let errors = ref<string[]>([]);
 
 const DoDelete = async () => {
 
-    keyboardPartId.value = route.params.id.toString();
+    keyboardPartId.value = route.params.id.toString();;
 
-    const res = await KeyboardRatingService.Delete(keyboardPartId.value, authStore.jwt!)
+    const res = await KeyboardRatingService.Delete(keyboardPartId.value)
 
     if (res.data) {
         router.push('../Index')

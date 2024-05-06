@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import router from '@/router';
 import KeyboardService from '@/services/KeyboardService';
-
 import { useRoute } from 'vue-router';
-import type { IKeyboardInfo } from '@/types/Keyboard';
 import { ref } from 'vue';
 
 // Initialize useAuthStore before any reactive code

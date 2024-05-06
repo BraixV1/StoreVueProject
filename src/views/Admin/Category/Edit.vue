@@ -1,12 +1,10 @@
 <script setup lang="ts">
 import router from '@/router';
-import { useAuthStore } from '@/stores/auth';
 import { useRoute } from 'vue-router';
 import { ref } from 'vue';
 import CategoryService from '@/services/CategoryService';
 
 // Initialize useAuthStore before any reactive code
-const authStore = useAuthStore();
 let route = useRoute(); 
 
 let Name = ref("");

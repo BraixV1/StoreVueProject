@@ -6,18 +6,20 @@ import { ref } from 'vue';
 import router from '@/router';
 
 
-const authStore = useAuthStore();
 const buildStore = useBuildStore();
 const buildName = ref("");
 const errors = ref<string[]>([]);
 
 const doAdd = async () => {
-    const res = await KeyboardBuildService.Add(buildName.value,"",authStore.jwt!);
+    const res = await KeyboardBuildService.Add(buildName.value,"");
     if (res.data){
         buildStore.buildId = res.data.id;
         router.push('BuilderPage');
     }
-    errors.value = res.errors
+    if (res.errors){
+        errors.value = res.errors
+    }
+    
 }
 
 </script>

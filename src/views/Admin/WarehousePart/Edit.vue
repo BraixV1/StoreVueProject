@@ -25,7 +25,7 @@ let showPart = ref(true)
 let errors = ref<string[]>([])
 
 const fetch = async () => {
-    warehousePartId.value = route.params.id.toString()
+    warehousePartId.value = route.params.id.toString();
     const resPart = await PartService.getAll()
     const resKeyboard = await KeyboardService.getAll()
     const resWarehouses = await WarehouseService.getAll();

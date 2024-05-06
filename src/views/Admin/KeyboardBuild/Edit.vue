@@ -1,12 +1,10 @@
 <script setup lang="ts">
 import router from '@/router';
-import { useAuthStore } from '@/stores/auth';
 import { useRoute } from 'vue-router';
 import { ref } from 'vue';
 import KeyboardBuildService from '@/services/KeyboardBuildService';
 
 
-const authStore = useAuthStore();
 let route = useRoute(); 
 
 let Name = ref("");
@@ -28,7 +26,7 @@ const doUpdate = async () => {
 }
 
 const Fetch = async () => {
-    keyboardBuildId.value = route.params.id.toString();
+    keyboardBuildId.value = route.params.id.toString();;
     try {
         const res = await KeyboardBuildService.getSpecific(keyboardBuildId.value);
         if (res.data) {

@@ -14,7 +14,6 @@ let parts = ref<IPartInfo[]>([])
 let filterParam = ref('all')
 let searchQuery = ref('')
 let buildStore = useBuildStore();
-let auth = useAuthStore();
 
 const fetchParts = async () => {
     try {
@@ -32,7 +31,7 @@ const fetchParts = async () => {
 
 const AddToBuild = async (partId: string) => {
     try {
-        const response = await PartInBuildService.Add(partId, buildStore.buildId!, auth.jwt!)
+        const response = await PartInBuildService.Add(partId, buildStore.buildId!)
         
         if (response.data) {
             router.push('BuilderPage')

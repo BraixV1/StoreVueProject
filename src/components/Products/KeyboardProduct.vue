@@ -4,7 +4,7 @@ import { useShoppingCartStore } from '@/stores/shoppingCart'
 import type { IKeyboardPartInfo } from '@/types/KeyboardPart'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { IOrderItemInfo } from '../../types/OrderItem'
+import  type{ IOrderItemInfo } from '../../types/OrderItem'
 import CommentForKeyboards from '../Comment section/CommentForKeyboards.vue'
 import Loading from '../Loading.vue'
 import type { IKeyboardRatingInfo } from '@/types/KeyboardRating'
@@ -22,7 +22,7 @@ let keyboardParts = ref<IKeyboardPartInfo[]>()
 let Ratings = ref<IKeyboardRatingInfo[]>()
 
 const Fetch = async () => {
-    keyboardId.value = route.params.id
+    keyboardId.value = route.params.id.toString();
     try {
         const res = await KeyboardService.getSpecific(keyboardId.value)
         if (res.data) {

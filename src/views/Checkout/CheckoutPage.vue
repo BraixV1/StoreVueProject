@@ -1,20 +1,17 @@
 <script setup lang="ts">
-import { useAuthStore } from '@/stores/auth';
 import { useShoppingCartStore } from '../../stores/shoppingCart';
 import router from '@/router';
 import OrderService from '@/services/OrderService';
 import { ref } from 'vue';
-import KeyboardBuildCreate from '@/views/Admin/KeyboardBuild/Create.vue';
 
 let cart = useShoppingCartStore();
-const authStore = useAuthStore();
 
 let errors = ref<string[]>([]);
 let price = ref(0);
 
 
 const CompletePurchase = async () => {
-    const res = await OrderService.Add(10, authStore.jwt!, cart.CartItems);
+    const res = await OrderService.Add(10, cart.CartItems);
     if (res.data){
         cart.clearCartData();
         router.push('/');

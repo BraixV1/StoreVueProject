@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { useAuthStore } from '@/stores/auth';
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 import router from '@/router';
 import OrderItemService from '@/services/OrderItemService';
 
-let authStore = useAuthStore();
 let route = useRoute(); 
 
 let orderItemId = ref('');
@@ -13,7 +11,7 @@ let errors = ref<string[]>([]);
 
 const DoDelete = async () => {
 
-    orderItemId.value = route.params.id.toString();
+    orderItemId.value = route.params.id.toString();;
 
     const res = await OrderItemService.Delete(orderItemId.value)
 
