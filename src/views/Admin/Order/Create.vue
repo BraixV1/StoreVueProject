@@ -8,13 +8,13 @@ let orderNumber = ref(0);
 
 let errors = ref<string[]>([]);
 
-const addNew = async () => {
-    const res = await OrderService.Add(orderNumber.value);
-    if (res.data){
-        router.back();
-    }
-    errors.value = res.errors!;
-}
+// const addNew = async () => {
+//     const res = await OrderService.Add(orderNumber.value);
+//     if (res.data){
+//         router.back();
+//     }
+//     errors.value = res.errors!;
+// }
 
 </script>
 
@@ -40,7 +40,7 @@ const addNew = async () => {
             </div>
           </div>
           <div>
-            <button type="button" @click.prevent="addNew" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Add new keyboard</button>
+            <button type="button" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Add new keyboard</button>
           </div>
           <router-link class="underline" to="Index">Back to the Dashboard</router-link>
         </form>
