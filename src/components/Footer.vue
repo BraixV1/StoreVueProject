@@ -32,8 +32,7 @@
             <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-32">
             <div className="mx-auto max-w-sm lg:max-w-none">
                 <p className="mt-4 text-center text-gray-500 lg:text-left lg:text-lg">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium natus quod eveniet
-                aut perferendis distinctio iusto repudiandae, provident velit earum?
+                    This is a mock up store for completing js course and web technologies in c#
                 </p>
 
                 <div className="mt-6 flex justify-center gap-4 lg:justify-start">

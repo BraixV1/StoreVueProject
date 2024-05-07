@@ -33,12 +33,12 @@
               Start Building
             </router-link>
     
-            <a
-              href="#"
+            <router-link
+              to="/Store/KeyboardsStore"
               class="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-indigo-600 shadow hover:text-indigo-700 focus:outline-none focus:ring active:text-rose-500 sm:w-auto"
             >
-              Learn More
-            </a>
+              Keyboards
+            </router-link>
           </div>
         </div>
       </div>

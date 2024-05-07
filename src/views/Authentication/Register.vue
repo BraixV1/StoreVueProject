@@ -65,12 +65,11 @@ const doRegister = async () => {
             </a>
 
             <h2 class="mt-6 text-2xl font-bold text-white sm:text-3xl md:text-4xl">
-            Welcome to the keyboard store
+            Welcome to the keyboard store.
             </h2>
 
             <p class="mt-4 leading-relaxed text-white/90">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi nam dolorum aliquam,
-            quibusdam aperiam voluptatum.
+                Become a member at our growing community of keyboard enthusiasts.
             </p>
         </div>
         </section>
@@ -99,12 +98,11 @@ const doRegister = async () => {
             </a>
 
             <h1 class="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
-                Welcome to the keyboard store
+                Welcome to the keyboard store.
             </h1>
 
             <p class="mt-4 leading-relaxed text-gray-500">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi nam dolorum aliquam,
-                quibusdam aperiam voluptatum.
+                Become a member at our growing community of keyboard enthusiasts.
             </p>
             </div>
             <div v-if="errors.length > 0" role="alert" class="rounded border-s-4 border-red-500 bg-red-50 p-4">
