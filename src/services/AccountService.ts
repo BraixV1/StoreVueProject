@@ -144,7 +144,7 @@ export default class AccountService {
       console.log(response.status)
 
       if (response.status < 300) {
-        authStore.clearAuthData()
+        authStore.clearAuthData
         return {}
       } else {
         return {
