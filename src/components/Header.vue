@@ -142,7 +142,7 @@ const enableDropDown = () => {
                         <div
                             v-if="showDropDown"
                             id="dropdown"
-                            class="animate-fade-down animate-duration-300 animate-ease-in absolute top-full z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+                            class=" animate-fade-down animate-duration-300 animate-ease-in absolute top-full -right-1/2 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
                         >
                             <ul
                                 class="py-2 text-sm text-gray-700 dark:text-gray-200"
