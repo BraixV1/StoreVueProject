@@ -105,7 +105,7 @@ const enableDropDown = () => {
                         </router-link>
 
                         <a
-                            @click.prevent="doLogout()"
+                            @click.prevent="doLogout"
                             class="hidden rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-indigo-600 transition hover:text-indigo-600/75 sm:block"
                             href="#"
                         >
@@ -171,7 +171,7 @@ const enableDropDown = () => {
                                 </li>
                                 <li v-if="authStore.isAuthenticated">
                                     <button
-                                        @click.prevent="doLogout()"
+                                        @click.prevent="doLogout"
                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                                         >Sign out</button
                                     >
