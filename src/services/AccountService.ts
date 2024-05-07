@@ -141,10 +141,9 @@ export default class AccountService {
       const response = await AccountService.httpClient.patch<IUserInfo>('v1/Authentication/LogOut', logoutInfo, {
         headers: { Authorization: `Bearer ${authStore.jwt}` }
       })
-      console.log(response.status)
+      authStore.clearAuthData;
 
       if (response.status < 300) {
-        authStore.clearAuthData
         return {}
       } else {
         return {
