@@ -36,7 +36,7 @@ const filteredOrders = computed(() => {
             return orders.value.filter(
                 (orderItem) =>
                     orderItem
-                        .appUser!.email.toLowerCase()
+                        .email.toLowerCase()
                         .includes(searchQuery.value.toLowerCase()) ||
                     orderItem.orderNumber
                         .toString()
@@ -49,7 +49,7 @@ const filteredOrders = computed(() => {
             )
         case 'user':
             return orders.value.filter((orderItem) =>
-                orderItem.appUser!.email.toLowerCase().includes(searchQuery.value.toLowerCase())
+                orderItem.email.toLowerCase().includes(searchQuery.value.toLowerCase())
             )
         case 'ordernr':
             return orders.value.filter((orderItem) =>
@@ -69,7 +69,7 @@ const filteredOrders = computed(() => {
             return orders.value.filter(
                 (orderItem) =>
                     orderItem
-                        .appUser!.email.toLowerCase()
+                        .email.toLowerCase()
                         .includes(searchQuery.value.toLowerCase()) ||
                     orderItem.orderNumber
                         .toString()
